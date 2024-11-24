@@ -34,7 +34,7 @@ class Welcome : ComponentActivity() {
             alertDialog.show()
 
             val stringRequest = object : StringRequest(
-                Method.POST,
+                Method.GET,
                 "https://personal-jw7ryxr1.outsystemscloud.com/Learnify_BL/rest/v1Private/PingAuth",
                 Response.Listener { _ ->
                     val intent = Intent(this, Permissions::class.java)
@@ -63,9 +63,6 @@ class Welcome : ComponentActivity() {
                     val auth = "Bearer " + DBHelper(this@Welcome).getConfig("auth")
                     headers["Authorization"] = auth
                     return headers
-                }
-                override fun getBody(): ByteArray {
-                    return "{studentId: 0}".toByteArray()
                 }
             }
 

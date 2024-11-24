@@ -124,7 +124,7 @@ class Dashboard : ComponentActivity() {
 
         alertDialog.show()
         val requestCourses = object : StringRequest(
-            Method.POST,
+            Method.GET,
             "https://personal-jw7ryxr1.outsystemscloud.com/Learnify_BL/rest/v1Private/GetCourses",
             Response.Listener { response ->
                 alertDialog.dismiss()
@@ -192,10 +192,6 @@ class Dashboard : ComponentActivity() {
                 val auth = "Bearer " + DBHelper(this@Dashboard).getConfig("auth")
                 headers["Authorization"] = auth
                 return headers
-            }
-
-            override fun getBody(): ByteArray {
-                return "{studentId: 0}".toByteArray()
             }
         }
 
