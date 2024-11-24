@@ -1,0 +1,47 @@
+server {
+    listen 80;
+    server_name vis-ipv-cda.epictv.spacelabs.pt;
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name vis-ipv-cda.epictv.spacelabs.pt;
+
+    ssl_certificate /etc/letsencrypt/live/api-master.epictv.spacelabs.pt/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api-master.epictv.spacelabs.pt/privkey.pem;
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
+    ssl_session_tickets off;
+
+    ssl_dhparam /etc/nginx/sites-epictv/dhparam;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128->;
+    ssl_prefer_server_ciphers off;
+
+    add_header Strict-Transport-Security "max-age=63072000" always;
+
+    location /public/ {
+        # This location block will allow unrestricted access to the public folder
+        root /usr/epictv;
+        try_files $uri $uri/ =404;
+    }
+
+    location / {
+        root /usr/epictv;
+        auth_request /auth;
+        try_files $uri $uri/ =404;
+    }
+
+    location = /auth {
+        internal;
+        proxy_pass http://192.168.1.10:8080/v1/checkAuth;
+        proxy_pass_request_body off;
+        proxy_set_header Content-Length "";
+        proxy_intercept_errors on;
+    }
+}

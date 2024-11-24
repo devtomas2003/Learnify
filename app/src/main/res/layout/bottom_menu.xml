@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/profile"
+        android:title="@string/profile_lbl" />
+    <item
+        android:id="@+id/nav_courses"
+        android:icon="@drawable/courses"
+        android:title="@string/courses_lbl" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/exit"
+        android:title="@string/exit" />
+</menu>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Learnify"
+        tools:targetApi="31">
+        <activity
+            android:name=".Player"
+            android:exported="false"
+            android:label="@string/title_activity_player"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".Nearby"
+            android:exported="false"
+            android:label="@string/title_activity_nearby"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".ClassDetail"
+            android:exported="false"
+            android:label="@string/title_activity_class_detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".QRCode"
+            android:exported="false"
+            android:label="@string/title_activity_qrcode"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".Profile"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".Permissions"
+            android:exported="false"
+            android:label="@string/title_activity_permissions"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".CreateAccount"
+            android:exported="false"
+            android:label="@string/title_activity_create_account"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".Login"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify" />
+        <activity
+            android:name=".Welcome"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Learnify">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".Utils.OfflinePlayback" android:foregroundServiceType="dataSync" />
+    </application>
+
+</manifest>
